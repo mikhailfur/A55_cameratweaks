@@ -4,11 +4,10 @@ on:
   push:
     branches:
       - main # Укажите здесь вашу основную ветку, например, master
-
+    workflow_dispatch:
 jobs:
   build:
     runs-on: ubuntu-latest
-    # 👇 ВОТ ЭТОТ БЛОК НУЖНО ДОБАВИТЬ
     permissions:
       contents: write
     steps:
