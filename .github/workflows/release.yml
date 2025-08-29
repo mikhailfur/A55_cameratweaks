@@ -1,0 +1,44 @@
+name: Build and Release Magisk Module
+
+on:
+  push:
+    branches:
+      - main # Укажите здесь вашу основную ветку, например, master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Extract Version from module.prop
+        id: get_version
+        run: echo "module_version=$(grep '^version=' module.prop | cut -d'=' -f2)" >> $GITHUB_OUTPUT
+
+      - name: Create ZIP Archive
+        run: |
+          VERSION=${{ steps.get_version.outputs.module_version }}
+          ARCHIVE_NAME="A55_CameraTweaks-${VERSION}.zip"
+          zip -r $ARCHIVE_NAME . -x ".github/*" "README.md" "LICENSE" ".git/*"
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: release-${{ steps.get_version.outputs.module_version }}
+          release_name: A55_CameraTweaks-${{ steps.get_version.outputs.module_version }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./A55_CameraTweaks-${{ steps.get_version.outputs.module_version }}.zip
+          asset_name: A55_CameraTweaks-${{ steps.get_version.outputs.module_version }}.zip
+          asset_content_type: application/zip
