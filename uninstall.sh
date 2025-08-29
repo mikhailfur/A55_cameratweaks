@@ -1,17 +1,21 @@
 #!/system/bin/sh
+#
+# shellcheck disable=SC2148
+#
 
-# Путь к оригинальному файлу
-ORIG_FILE=/system/cameradata/camera-feature.xml
+# Пути к оригинальным файлам, которые были заменены
+ORIG_FLOATING_FILE=/system/cameradata/camera-feature.xml
 
-# Путь к бэкапу внутри модуля
-MOD_BACKUP=/data/adb/modules/camera-tweaks-a55/backup/camera-feature.xml.bak
+# Пути к резервным копиям внутри модуля
+MOD_FLOATING_BACKUP=$MODDIR/system/cameradata/camera-feature.xml
 
-# Проверяем, существует ли бэкап
-if [ -f "$MOD_BACKUP" ]; then
-  # Восстанавливаем оригинальный файл из бэкапа
-  # Используем cp -f для перезаписи, если файл уже существует
-  cp -f $MOD_BACKUP $ORIG_FILE
-  # Устанавливаем правильные права доступа, как у системных файлов
-  chmod 644 $ORIG_FILE
-  chown root:root $ORIG_FILE
+# Восстанавливаем camera-feature.xml
+if [ -f "$MOD_FLOATING_BACKUP" ]; then
+  ui_print "- Восстановление оригинального camera-feature.xml..."
+  cp -a "$MOD_FLOATING_BACKUP" "$ORIG_FLOATING_FILE"
+  ui_print "- camera-feature.xml восстановлен!"
+else
+  ui_print "- Резервная копия camera-feature.xml не найдена."
 fi
+
+ui_print "- Модуль успешно удален!"
