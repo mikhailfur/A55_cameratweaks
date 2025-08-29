@@ -236,9 +236,11 @@
     <local name="SUPPORT_HDR10_PLUS_RECORDING" value="true"/>
     <local name="SUPPORT_VIDEO_HDR" value="true" />
     <local name="SUPPORT_LIVE_BLUR" value="true"/>
-    <local name="CAMERA_SUPPORT_PICTURE_FORMAT" value="true"/>
     <local name="SUPPORT_MULTI_AF" value="true"/>
     <local name="MAX_BURST_CAPTURE_COUNT" value="100" />
     <local name="SUPPORT_SUPER_SLOW_MOTION_AUTO_DETECTION" value="true"/>
     <local name="SUPPORT_OBJECT_TRACKING_AF" value="true" />
+
+    <!-- CameraTweakForSasmungA55 | The following settings are disabled because causing bugs or bootloop -->
+    <local name="CAMERA_SUPPORT_PICTURE_FORMAT" value="false"/>
 </resources>
