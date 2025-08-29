@@ -107,8 +107,6 @@ A55_cameratweaks/
 ## 📞 Поддержка
 
 - **Автор**: [mikhailfur](https://github.com/mikhailfur)
-- **Версия**: 1.0.0
-- **Последнее обновление**: 2025/08/29
 - **Telegram**: [@dataisnotfound](https://t.me/dataisnotfound)
 
 **Для устранения неполадок просьба обратиться во вкладку Issues или в Telegram: [@dataisnotfound](https://t.me/dataisnotfound)**
