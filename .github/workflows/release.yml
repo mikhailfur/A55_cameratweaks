@@ -1,9 +1,9 @@
-name: Build and Release Magisk Module
+name: Build and Release Magisk/KSU Module
 
 on:
   push:
     branches:
-      - main # Укажите здесь вашу основную ветку, например, master
+      - master
 
 jobs:
   build:
