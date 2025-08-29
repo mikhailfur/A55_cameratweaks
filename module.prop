@@ -1,6 +1,6 @@
 id=camera-tweaks-a55
 name=Camera Tweaks (Samsung A55)
-version=1.0.0
-versionCode=100
+version=1.0.3
+versionCode=103
 author=mikhailfur
 description=Replaces camera-feature.xml for potential camera improvements.
